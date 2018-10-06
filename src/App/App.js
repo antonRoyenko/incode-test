@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Main } from '../containers';
+import { SideBar } from '../containers/SideBar';
+import { Detail } from '../containers/UserDetail';
 
 class App extends Component {
     render() {
         return (
             <div>
-                <Main />
+                <SideBar />
+                <Detail />
             </div>
         );
     }
