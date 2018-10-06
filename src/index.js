@@ -7,10 +7,9 @@ import {createLogger} from 'redux-logger'
 import reducer from './reducers'
 import { App } from './containers/App/App'
 import { BrowserRouter } from 'react-router-dom';
-import styles from './App.scss';
-import 'font-awesome/css/font-awesome.min.css';
-import 'bootstrap-css-only/css/bootstrap.min.css';
-import 'mdbreact/dist/css/mdb.css';
+import './App.scss';
+import 'semantic-ui-css/semantic.min.css';
+
 
 const middleware = [thunk];
 if (process.env.NODE_ENV !== 'production') {

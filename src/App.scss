@@ -1,7 +1,38 @@
 #root {
+  background: #F7F7F7;
+
+  nav {
+    height: 100vh;
+    min-width: 300px;
+    overflow: auto;
+    border-right: 1px solid #e0e1e2;
+
+    .search-block {
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+
+    }
+
+    .ui.card {
+      border-radius: 0;
+    }
+  }
+
   display: flex;
-  
-  li {
-    cursor: pointer;
+
+  main {
+    padding: 50px;
+
+    .content {
+      background: #fff;
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid #e0e1e2;
+    }
   }
 }

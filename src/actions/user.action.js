@@ -45,6 +45,10 @@ export const searchUser = (searchValue) => {
             return info.toLowerCase().includes(value);
         });
 
+        if (result.length === 0) {
+            result = [`no data`];
+        }
+
         dispatch(userResult(result));
     };
 

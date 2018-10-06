@@ -3,6 +3,7 @@ import {List, SearchInput, UserDetail} from "../../components/App";
 import {createSelector} from 'reselect';
 import {getUsers, searchUser} from '../../actions/user.action'
 import {connect} from 'react-redux';
+import { Container } from 'semantic-ui-react'
 
 class App extends React.Component {
     constructor(props) {
@@ -42,10 +43,12 @@ class App extends React.Component {
                         <Fragment>
                             <nav>
                                 <SearchInput value={value} handleChange={this.handleChange}/>
-                                <List users={usersList} setActive={this.setActive}/>
+                                <List users={usersList} setActive={this.setActive} request={value}/>
                             </nav>
                             <main>
-                                <UserDetail user={initialList[active]}/>
+                                <Container>
+                                    <UserDetail user={initialList[active]}/>
+                                </Container>
                             </main>
                         </Fragment>
                     ) : (
