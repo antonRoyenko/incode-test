@@ -4,10 +4,11 @@ import { userConstants } from '../constants';
 const initialState = {
     loading: false,
     users: [],
+    initialList: [],
     error: null
 };
 
-const usersByIdReducer = (state = initialState, action) => {
+export const usersByIdReducer = (state = initialState, action) => {
     switch (action.type) {
         case userConstants.GET_USER_REQUEST:
             return {
@@ -15,14 +16,24 @@ const usersByIdReducer = (state = initialState, action) => {
                 loading: true
             };
         case userConstants.GET_USER_REQUEST_SUCCESS:
-            const newState = {...state};
-            action.data.forEach((user, id) => {
-                newState[id] = user;
+            let newState = {...state};
+            action.data.forEach((user) => {
+                newState[user.id] = user;
             });
             return {
                 users: newState,
+                initialList: action.data,
                 loading: false,
                 error: null
+            };
+        case userConstants.SEARCH_USER:
+            newState = {...state};
+            action.data.forEach((user) => {
+                newState[user.id] = user;
+            });
+            return {
+                ...state,
+                users: newState,
             };
         case userConstants.GET_USER_REQUEST_FAILURE:
             return {
@@ -44,9 +55,15 @@ export const usersListingReducer = (state = initialState, action) => {
             };
         case userConstants.GET_USER_REQUEST_SUCCESS:
             return {
-                users: action.data.map(x => x),
+                users: action.data.map((item) => item.id),
+                initialList: action.data,
                 loading: false,
                 error: null
+            };
+        case userConstants.SEARCH_USER:
+            return {
+                ...state,
+                users: action.data.map((item) => item.id),
             };
         case userConstants.GET_USER_REQUEST_FAILURE:
             return {
@@ -54,14 +71,13 @@ export const usersListingReducer = (state = initialState, action) => {
                 loading: false,
                 error: action.error
             };
-        default:
-            return state;
+        default: return state
     }
 };
 
 const rootReducer = combineReducers({
     usersById: usersByIdReducer,
-    usersListing: usersListingReducer
+    usersListing: usersListingReducer,
 });
 
 export default rootReducer;

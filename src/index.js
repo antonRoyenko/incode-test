@@ -5,7 +5,7 @@ import {Provider} from 'react-redux'
 import thunk from 'redux-thunk'
 import {createLogger} from 'redux-logger'
 import reducer from './reducers'
-import App from './App/App'
+import { App } from './containers/App/App'
 import { BrowserRouter } from 'react-router-dom';
 import styles from './App.scss';
 import 'font-awesome/css/font-awesome.min.css';

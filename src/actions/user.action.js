@@ -18,7 +18,37 @@ export const getUsers = () => {
         dispatch(getUserSuccess(data));
     };
 
-    function getUserStarted() { return { type: userConstants.GET_USER_REQUEST} };
-    function getUserFailure(message) { return { type: userConstants.GET_USER_REQUEST_FAILURE, message} };
-    function getUserSuccess(data) { return { type: userConstants.GET_USER_REQUEST_SUCCESS, data} };
+    function getUserStarted() {
+        return {type: userConstants.GET_USER_REQUEST}
+    };
+
+    function getUserFailure(message) {
+        return {type: userConstants.GET_USER_REQUEST_FAILURE, message}
+    };
+
+    function getUserSuccess(data) {
+        return {type: userConstants.GET_USER_REQUEST_SUCCESS, data}
+    };
+};
+
+export const searchUser = (searchValue) => {
+    return (dispatch, getState) => {
+        let value = searchValue.toLowerCase();
+
+        let result = getState().usersListing.initialList.filter(user => {
+            
+            const info = user.general.firstName + ' ' + user.general.lastName + ' ' +
+                user.job.company + ' ' + user.contact.email + ' ' +user.contact.phone
+                + ' ' + user.address.street + ' ' + user.address.city + ' ' + user.address.zipCode + ' ' +
+                user.address.country;
+
+            return info.toLowerCase().includes(value);
+        });
+
+        dispatch(userResult(result));
+    };
+
+    function userResult(data) {
+        return {type: userConstants.SEARCH_USER, data}
+    };
 };
