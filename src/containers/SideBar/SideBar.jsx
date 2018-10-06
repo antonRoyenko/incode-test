@@ -14,20 +14,26 @@ class SideBar extends React.Component {
     }
 
     render() {
+        const { usersList } = this.props;
         return(
             <nav>
                 <SearchInput />
-                <List />
+                <List users={usersList}/>
             </nav>
         )
     }
 }
 
+const getListing = createSelector(
+    state => state.usersById,
+    state => state.usersListing,
+    (users, listing) => listing.users.map((id, key) => {
+        return {user: id}
+    })
+);
 
 function mapStateToProps(state) {
-    return {
-        user: state,
-    }
+    return {usersList: getListing(state)};
 }
 
 const connectedSideBar = connect(mapStateToProps)(SideBar);
