@@ -3,7 +3,6 @@ import { Button, Card, Image } from 'semantic-ui-react';
 
 export const List = (props) => {
     if (props.users[0].user !== 'no data') {
-        console.log();
         return (
             <ul>
                 {props.users.map((item, key) => (

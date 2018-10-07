@@ -11,12 +11,8 @@ export const UserDetail = (props) =>
                     </Grid.Column>
                     <Grid.Column width={9}>
                         <div className="full-info">
-                            <p className="name">
-                                <Header as='h1'>{props.user.general.firstName} {props.user.general.lastName}</Header>
-                            </p>
-                            <p className="job">
-                                <Header as='h3'>{props.user.job.company} - {props.user.job.title}</Header>
-                            </p>
+                            <Header as='h1'>{props.user.general.firstName} {props.user.general.lastName}</Header>
+                            <Header as='h3'>{props.user.job.company} - {props.user.job.title}</Header>
                             <p className="job">
                                 {props.user.contact.email} {props.user.contact.phone}
                             </p>

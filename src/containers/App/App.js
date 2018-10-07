@@ -1,11 +1,11 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, Component} from 'react';
 import {List, SearchInput, UserDetail} from "../../components/App";
 import {createSelector} from 'reselect';
 import {getUsers, searchUser} from '../../actions/user.action'
 import {connect} from 'react-redux';
 import { Container } from 'semantic-ui-react'
 
-class App extends React.Component {
+class App extends Component {
     constructor(props) {
         super(props);
 
@@ -19,12 +19,12 @@ class App extends React.Component {
     }
 
     componentDidMount() {
-        this.props.dispatch(getUsers());
+        this.props.getUsers();
     }
 
     handleChange(event) {
         this.setState({value: event.target.value});
-        this.props.dispatch(searchUser(event.target.value));
+        this.props.searchUser(event.target.value);
     }
 
     setActive(id) {
@@ -81,8 +81,4 @@ function mapStateToProps(state) {
     };
 }
 
-
-const connectedApp = connect(mapStateToProps)(App);
-export {
-    connectedApp as App
-};
+export default connect(mapStateToProps, { getUsers, searchUser })(App);
